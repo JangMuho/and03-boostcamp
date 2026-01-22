@@ -26,6 +26,7 @@ class CanvasMemoViewModel @Inject constructor() : ViewModel() {
             CanvasMemoAction.CloseRelationDialog -> handleCloseRelationDialog()
             is CanvasMemoAction.OpenRelationDialog -> handleOpenRelationDialog(action)
             CanvasMemoAction.CloseAddCharacterDialog -> handleCloseAddCharacterDialog()
+            CanvasMemoAction.CloseAddQuoteDialog -> handleCloseAddQuoteDialog()
         }
     }
 
@@ -62,5 +63,15 @@ class CanvasMemoViewModel @Inject constructor() : ViewModel() {
             characterNameState = TextFieldState(),
             characterDescState = TextFieldState()
         )
+    }
+
+    private fun handleCloseAddQuoteDialog() {
+        _uiState.update {
+            it.copy(
+                isAddQuoteDialogVisible = false,
+                quoteState = TextFieldState(),
+                pageState = TextFieldState()
+            )
+        }
     }
 }

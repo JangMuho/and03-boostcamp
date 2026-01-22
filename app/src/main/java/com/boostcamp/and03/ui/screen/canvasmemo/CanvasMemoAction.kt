@@ -8,4 +8,5 @@ sealed class CanvasMemoAction {
         val fromNodeId: String,
         val toNodeId: String
     ) : CanvasMemoAction()
+    data object CloseAddQuoteDialog : CanvasMemoAction()
 }

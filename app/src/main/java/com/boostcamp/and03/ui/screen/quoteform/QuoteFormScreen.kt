@@ -134,9 +134,7 @@ private fun QuoteInputSection(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(And03Spacing.SPACE_S)
     ) {
-        Row(
-            verticalAlignment = Alignment.Bottom
-        ) {
+        Row(verticalAlignment = Alignment.Bottom) {
             Text(
                 text = stringResource(R.string.add_quote_sentence_label),
                 style = And03Theme.typography.labelLarge

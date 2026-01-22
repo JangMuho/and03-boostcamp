@@ -92,6 +92,11 @@
     <string name="add_character_dialog_name_placeholder">이름을 입력하세요.</string>
     <string name="add_character_dialog_desc_label">설명</string>
     <string name="add_character_dialog_desc_placeholder">설명을 입력하세요</string>
+    <string name="add_quote_dialog_title">인상깊은 구절 추가</string>
+    <string name="add_quote_dialog_sentence_label">구절 *</string>
+    <string name="add_quote_dialog_sentence_hint">인상깊은 구절을 입력하세요</string>
+    <string name="add_quote_dialog_page_label">페이지 *</string>
+    <string name="add_quote_dialog_page_hint">구절이 기록된 페이지를 입력하세요</string>
     <string name="canvas_memo_editor_page_list_scroll_page_range">p.%1$d~%2$d</string>
     <string name="canvas_memo_editor_page_list_scroll_single_page">p.%1$d</string>
 
