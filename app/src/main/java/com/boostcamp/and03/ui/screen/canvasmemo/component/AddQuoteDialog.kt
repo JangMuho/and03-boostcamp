@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +16,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import com.boostcamp.and03.R
 import com.boostcamp.and03.ui.component.AddTextByImageButton
@@ -23,6 +26,7 @@ import com.boostcamp.and03.ui.component.And03InfoSection
 import com.boostcamp.and03.ui.component.EditableTextField
 import com.boostcamp.and03.ui.component.LabelAndEditableTextField
 import com.boostcamp.and03.ui.component.OCRBottomSheet
+import com.boostcamp.and03.ui.theme.And03ComponentSize
 import com.boostcamp.and03.ui.theme.And03Spacing
 import com.boostcamp.and03.ui.theme.And03Theme
 
@@ -59,7 +63,9 @@ fun AddQuoteDialog(
                 labelRes = R.string.add_quote_page_label,
                 state = pageState,
                 placeholderRes = R.string.add_quote_page_hint,
-                onSubmit = {}
+                onSubmit = {},
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done
             )
         }
     )
@@ -98,7 +104,8 @@ private fun QuoteInputSection(
         EditableTextField(
             state = quoteState,
             placeholderRes = R.string.add_quote_sentence_hint,
-            onSubmit = {}
+            onSubmit = {},
+            modifier = Modifier.height(And03ComponentSize.TEXT_FIELD_HEIGHT_L)
         )
 
         Text(
