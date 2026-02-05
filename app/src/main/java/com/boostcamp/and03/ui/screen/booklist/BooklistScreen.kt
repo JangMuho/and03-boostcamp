@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -137,7 +138,8 @@ private fun BooklistScreen(
                         Text(
                             text = stringResource(R.string.book_list_empty_book),
                             style = And03Theme.typography.bodyLarge,
-                            color = And03Theme.colors.onSurfaceVariant
+                            color = And03Theme.colors.onSurfaceVariant,
+                            textAlign = TextAlign.Center
                         )
                     }
                 }
@@ -157,28 +159,9 @@ private fun BooklistScreen(
 
 @Preview(showBackground = true)
 @Composable
-fun BooklistScreenPreview() {
+fun BooklistScreenEmptyBookPreview() {
     val previewState = BooklistUiState(
-        allBooks = persistentListOf(
-            BookUiModel(
-                id = "",
-                title = "객체지향의 사실과 오해",
-                authors = persistentListOf("조영호"),
-                publisher = "위키북스",
-                thumbnail = "",
-                totalPage = 200,
-                isbn = ""
-            ),
-            BookUiModel(
-                id = "",
-                title = "클린 아키텍처",
-                authors = persistentListOf("로버트 C. 마틴"),
-                publisher = "인사이트",
-                thumbnail = "",
-                totalPage = 200,
-                isbn = ""
-            )
-        )
+        allBooks = persistentListOf()
     )
 
     And03Theme {
