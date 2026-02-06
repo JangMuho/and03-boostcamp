@@ -1,5 +1,6 @@
 package com.boostcamp.and03.ui.screen.canvasmemo
 
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
@@ -81,6 +82,7 @@ import com.boostcamp.and03.ui.theme.And03ComponentSize
 import com.boostcamp.and03.ui.theme.And03Padding
 import com.boostcamp.and03.ui.theme.And03Theme
 import com.boostcamp.and03.ui.util.collectWithLifecycle
+import com.google.common.math.LinearTransformation.vertical
 import kotlinx.coroutines.launch
 
 private object CanvasMemoScreenValues {
@@ -228,6 +230,12 @@ private fun CanvasMemoScreen(
                 uiState.relationAddStep == RelationAddStep.READY -> {
                     AlertMessageCard(
                         message = stringResource(id = R.string.add_relation_select_from_node),
+                        actions = listOf(
+                            AlertAction(
+                                text = stringResource(R.string.common_cancel),
+                                onClick = { onAction(CanvasMemoAction.CancelRelationStep) }
+                            )
+                        ),
                         modifier = Modifier
                             .padding(
                                 vertical = And03Padding.PADDING_L,
@@ -244,6 +252,12 @@ private fun CanvasMemoScreen(
                 uiState.relationAddStep == RelationAddStep.FROM_ONLY -> {
                     AlertMessageCard(
                         message = stringResource(id = R.string.add_relation_select_to_node),
+                        actions = listOf(
+                            AlertAction(
+                                text = stringResource(R.string.common_cancel),
+                                onClick = { onAction(CanvasMemoAction.CancelRelationStep) }
+                            )
+                        ),
                         modifier = Modifier
                             .padding(
                                 vertical = And03Padding.PADDING_L,
@@ -333,9 +347,12 @@ private fun CanvasMemoScreen(
                                             )
                                         },
                                         onClick = { nodeId ->
+                                            Log.d("DEBUG", "onClick 람다 실행! isDeleteMode = ${uiState.isDeleteMode}")
                                             if (uiState.isDeleteMode) {
+                                                Log.d("DEBUG", "SelectDeleteItem 호출")
                                                 onAction(CanvasMemoAction.SelectDeleteItem(nodeId))
                                             } else {
+                                                Log.d("DEBUG", "OnRelationNodeClick 호출")
                                                 onAction(CanvasMemoAction.OnRelationNodeClick(nodeId))
                                             }
                                         },
@@ -615,54 +632,6 @@ private fun CanvasMemoScreen(
 
             }
         }
-    }
-}
-
-@Composable
-fun DraggableCanvasItem(
-    nodeId: String,
-    worldOffset: Offset,
-    onMove: (Offset) -> Unit,
-    onSizeChanged: (IntSize) -> Unit,
-    modifier: Modifier = Modifier,
-    content: @Composable BoxScope.() -> Unit,
-    onClick: ((String) -> Unit)? = null,
-    draggable: Boolean = true,
-) {
-    Box(
-        modifier = modifier
-            .graphicsLayer {
-                translationX = worldOffset.x
-                translationY = worldOffset.y
-            }
-            .onGloballyPositioned { coords ->
-                onSizeChanged(coords.size)
-            }
-            .then(
-                if (onClick != null) {
-                    Modifier.pointerInput(nodeId) {
-                        detectTapGestures(
-                            onTap = {
-                                onClick(nodeId)
-                            }
-                        )
-                    }
-                } else {
-                    Modifier
-                }
-            )
-            .then(
-                if (draggable) {
-                    Modifier.pointerInput(nodeId) {
-                        detectDragGestures { change, dragAmount ->
-                            change.consume()
-                            onMove(dragAmount)
-                        }
-                    }
-                } else Modifier
-            )
-    ) {
-        content()
     }
 }
 

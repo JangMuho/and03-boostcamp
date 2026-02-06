@@ -70,3 +70,117 @@ fun DraggableCanvasItem(
         content()
     }
 }
+
+//@Composable
+//fun DraggableCanvasItem(
+//    nodeId: String,
+//    worldOffset: Offset,
+//    onMove: (Offset) -> Unit,
+//    onSizeChanged: (IntSize) -> Unit,
+//    modifier: Modifier = Modifier,
+//    content: @Composable BoxScope.() -> Unit,
+//    onClick: ((String) -> Unit)? = null,
+//    draggable: Boolean = true,
+//) {
+//    Box(
+//        modifier = modifier
+//            .graphicsLayer {
+//                translationX = worldOffset.x
+//                translationY = worldOffset.y
+//            }
+//            .onGloballyPositioned { coords ->
+//                onSizeChanged(coords.size)
+//            }
+//            .then(
+//                if (onClick != null) {
+//                    Modifier.pointerInput(nodeId) {
+//                        detectTapGestures(
+//                            onPress = {
+//                                Log.d("TAP", "onPress")
+//                                tryAwaitRelease()
+//                            },
+//                            onTap = {
+//                                Log.d("TAP", "onTap")
+//                                onClick(nodeId)
+//                            }
+//                        )
+//                    }
+//                } else {
+//                    Modifier
+//                }
+//            )
+//            .then(
+//                if (draggable) {
+//                    Modifier.pointerInput(nodeId) {
+//                        detectDragGestures(
+//                            onDragStart = {
+//                                Log.d("DRAG", "onDragStart for nodeId=$nodeId")
+//                            },
+//                            onDrag = { change, dragAmount ->
+//                                Log.d("DRAG", "onDrag nodeId=$nodeId, dragAmount=$dragAmount")
+//                                Log.d("DRAG", "positionChange=${change.positionChange()}")
+//                                change.consume()
+//                                onMove(dragAmount)
+//                            },
+//                            onDragEnd = {
+//                                Log.d("DRAG", "onDragEnd for nodeId=$nodeId")
+//                            },
+//                            onDragCancel = {
+//                                Log.d("DRAG", "onDragCancel for nodeId=$nodeId")
+//                            }
+//                        )
+//                    }
+//                } else Modifier
+//            )
+//    ) {
+//        content()
+//    }
+//}
+
+//@Composable
+//fun DraggableCanvasItem(
+//    nodeId: String,
+//    worldOffset: Offset,
+//    onMove: (Offset) -> Unit,
+//    onSizeChanged: (IntSize) -> Unit,
+//    modifier: Modifier = Modifier,
+//    content: @Composable BoxScope.() -> Unit,
+//    onClick: ((String) -> Unit)? = null,
+//    draggable: Boolean = true,
+//) {
+//    Box(
+//        modifier = modifier
+//            .graphicsLayer {
+//                translationX = worldOffset.x
+//                translationY = worldOffset.y
+//            }
+//            .onGloballyPositioned { coords ->
+//                onSizeChanged(coords.size)
+//            }
+//            .then(
+//                if (onClick != null) {
+//                    Modifier.pointerInput(nodeId, onClick) {
+//                        detectTapGestures(
+//                            onTap = {
+//                                onClick(nodeId)
+//                            }
+//                        )
+//                    }
+//                } else {
+//                    Modifier
+//                }
+//            )
+//            .then(
+//                if (draggable) {
+//                    Modifier.pointerInput(nodeId, draggable) {
+//                        detectDragGestures { change, dragAmount ->
+//                            change.consume()
+//                            onMove(dragAmount)
+//                        }
+//                    }
+//                } else Modifier
+//            )
+//    ) {
+//        content()
+//    }
+//}
